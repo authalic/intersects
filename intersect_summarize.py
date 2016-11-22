@@ -48,8 +48,8 @@ for filename_01 in filenames_01:
     # **** this will need to test for the type of output (line or polygon, length or area)
 
     sumtablename = filename_01 + '_table'  # name of the summary table
-    geomdesc = arcpy.Describe(filename_01).shapeType
-    
+    geomdesc = arcpy.Describe(os.path.join(dirpath_01, filename_01)).shapeType
+
     arcpy.CreateTable_management(sumtables, sumtablename)
     arcpy.AddField_management(os.path.join(sumtables, sumtablename), 'INPUTNAME', 'TEXT', '', '', 80)
 
