@@ -12,11 +12,11 @@ import time
 input_01 = r'C:\projects\000007473\wetlands\Wetland_Impacts_Level_2\test_wetland_impacts.gdb\inputs'
 input_02 = r'C:\projects\000007473\wetlands\Wetland_Impacts_Level_2\test_wetland_impacts.gdb\designs'
 
-# Set workspace for storing output feature classes and results tables
+# Set workspace for storing output feature classes
 arcpy.env.workspace = r'C:\projects\000007473\wetlands\Wetland_Impacts_Level_2\test_wetland_impacts.gdb\test'
 
-# Summary Statistics Tables seem to require their own GDB.  Can't create tables in the input GDB without getting error:
-# ERROR 000210: Cannot Create Output
+# Summary Statistics Tables seem to require their own GDB.
+# Can't create tables in the input GDB without getting error: ERROR 000210: Cannot Create Output
 sumtables = r'C:\projects\000007473\wetlands\Wetland_Impacts_Level_2\tables.gdb'
 
 # names of the area and length fields in each output feature class
@@ -44,14 +44,15 @@ starttime = time.time()
 for filename_01 in filenames_01:
 
     # create the new summary table here, for storing the length/area of each intersection
-    
-    # **** this will need to test for the type of output (line or polygon, length or area)
 
     sumtablename = filename_01 + '_table'  # name of the summary table
     geomdesc = arcpy.Describe(os.path.join(dirpath_01, filename_01)).shapeType
 
     arcpy.CreateTable_management(sumtables, sumtablename)
     arcpy.AddField_management(os.path.join(sumtables, sumtablename), 'INPUTNAME', 'TEXT', '', '', 80)
+
+    # add the field for either area or length, depending on geometry type
+    # and create an insert cursor for writing records to the table
 
     if geomdesc == "Polyline":
         # add the length field
@@ -73,8 +74,7 @@ for filename_01 in filenames_01:
         print output_fc
 
         # uncomment the next line to execute the Intersect geoprocessing tool
-        # Also, look for a way to overwrite previous output
-        # arcpy.Intersect_analysis(inputFeatures, output_fc, "ALL", "", "INPUT")
+        arcpy.Intersect_analysis(inputFeatures, output_fc, "ALL", "", "INPUT")
 
         # create a list of fields in the feature class
         fields = [f.name for f in arcpy.ListFields(output_fc)]
@@ -88,11 +88,9 @@ for filename_01 in filenames_01:
         if geomdesc == "Polyline" and not (lengthfield in fields):
             print "  Creating a Length field for this polyline feature class"
             arcpy.AddField_management(output_fc, lengthfield, "DOUBLE")
-            # copy the filename_02 and the total length to the summary table
         elif geomdesc == "Polygon" and not (areafield in fields):
             print "  Creating an Area field for this polygon feature class"
             arcpy.AddField_management(output_fc, areafield, "DOUBLE")
-            # copy the filename_02 and the total area to the summary table
 
         # calculate the length or area of the intersects
         # then, create a summary table for each layer
@@ -102,14 +100,43 @@ for filename_01 in filenames_01:
         if geomdesc == "Polyline":
             calc_exp = "!shape.length@{}!".format(length_unit)
             arcpy.CalculateField_management(output_fc, lengthfield, calc_exp, "PYTHON_9.3", "")
-            # arcpy.Statistics_analysis(output_fc, os.path.join(sumtables, output_fc + "_summary"), [[lengthfield, "SUM"]])
+            # copy each record to the results table
+            # test if the current layer is empty and insert a row into the results table indicating such
+            if arcpy.GetCount_management(output_fc)[0] == '0':
+                cursor.insertRow([filename_02, 0])
+            else:  # loop through all values in the table
+                with arcpy.da.SearchCursor(output_fc, [lengthfield]) as searchcurs:
+                    for row in searchcurs:
+                        cursor.insertRow([filename_02, row[0]])
+
         elif geomdesc == "Polygon":
             calc_exp = "!shape.area@{}!".format(area_unit)
             arcpy.CalculateField_management(output_fc, areafield, calc_exp, "PYTHON_9.3", "")
-            # arcpy.Statistics_analysis(output_fc, os.path.join(sumtables, output_fc + "_summary"), [[areafield, "SUM"]])
-            
+            # copy each record to the results table
+            # test if the current layer is empty and insert a row into the results table indicating such
+            if arcpy.GetCount_management(output_fc)[0] == '0':
+                cursor.insertRow([filename_02, 0])
+            else:  # loop through all values in the table
+                with arcpy.da.SearchCursor(output_fc, [areafield]) as searchcurs:
+                    for row in searchcurs:
+                        cursor.insertRow([filename_02, row[0]])
     # delete the input cursor
     del cursor
+
+    # Create the Summarize tables from the Results tables, using Make Query Table
+
+    if geomdesc == "Polyline":
+        # summarize each input on the length field
+        in_table = os.path.join(sumtables, filename_01 + '_table')
+        out_table = os.path.join(sumtables, filename_01 + '_summarize')
+        arcpy.Statistics_analysis(in_table, out_table, [[lengthfield, "SUM"]], "INPUTNAME")
+
+    elif geomdesc == "Polygon":
+        # summarize each input on the area field
+        in_table = os.path.join(sumtables, filename_01 + '_table')
+        out_table = os.path.join(sumtables, filename_01 + '_summarize')
+        arcpy.Statistics_analysis(in_table, out_table, [[areafield, "SUM"]], "INPUTNAME")
+
 
 endtime = time.time()
 
