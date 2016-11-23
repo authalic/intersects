@@ -90,10 +90,8 @@ for filename_01 in filenames_01:
         # Note: a schema lock will need to be acquired in order to create the fields, so check ArcCatalog
 
         if outgeomdesc == "Polyline" and not (lengthfield in fields):
-            print "  Creating a Length field for this polyline feature class"
             arcpy.AddField_management(output_fc, lengthfield, "DOUBLE")
         elif outgeomdesc == "Polygon" and not (areafield in fields):
-            print "  Creating an Area field for this polygon feature class"
             arcpy.AddField_management(output_fc, areafield, "DOUBLE")
 
         # calculate the geometry (length or area) of the intersects
