@@ -4,6 +4,7 @@ import arcpy
 import datetime
 import time
 
+print("starting")
 t1 = time.time() # start the timer
 
 # workspace must be set prior to listing feature classes
@@ -22,27 +23,27 @@ for fc in fcs:
 
         print('\n', fc)
 
-        # select the parcels that intersect the forested areas
-        print("   selecting forested")
+        # select the private parcels
+        print("   selecting private parcels")
         starttime = time.time()  # start the stopwatch
-        # forested = arcpy.SelectLayerByLocation_management(fc, "INTERSECT", forest)
+        private_parcels = arcpy.SelectLayerByAttribute_management(fc, "NEW_SELECTION", "LOWER(OWN_TYPE) = 'private'")
         secs = time.time() - starttime
-        print("   done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
+        print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
-        # select the private parcels from the previous selection
-        print("   selecting private subset")
+        # select the private parcels that intersect the forested areas
+        print("   selecting forested private")
         starttime = time.time()  # start the stopwatch
-        # arcpy.SelectLayerByAttribute_management(forested, "SUBSET_SELECTION","LOWER(OWN_TYPE) = 'private'")
+        private_forested = arcpy.SelectLayerByLocation_management(private_parcels, "INTERSECT", selection_type="SUBSET_SELECTION", select_features=forest)
         secs = time.time() - starttime
-        print("   done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
+        print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
         # save the remaining features as a new layer
         print("   saving output layer")
         starttime = time.time()  # start the stopwatch
-        outlayer = fc + '_privateforest'
-        # arcpy.CopyFeatures_management(fc, outlayer)
+        outlayername = fc + '_privateforest'
+        arcpy.CopyFeatures_management(private_forested, outlayername)
         secs = time.time() - starttime
-        print("   done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
+        print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
 t2 = time.time()
 print("done - elapsed time: ", str(datetime.timedelta(seconds=t2 - t1)))
