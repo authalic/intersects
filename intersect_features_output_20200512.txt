@@ -1,0 +1,235 @@
+(arcgispro-py3-clone) C:\projects\python\intersects>python intersect_features.py
+starting
+
+ Parcels_Beaver
+   selecting private parcels
+     done - elapsed time:  0:00:12.614057
+   selecting forested private
+     done - elapsed time:  0:04:41.814060
+   saving output layer
+     done - elapsed time:  0:00:25.492713
+
+ Parcels_BoxElder
+   selecting private parcels
+     done - elapsed time:  0:00:09.397252
+   selecting forested private
+     done - elapsed time:  0:05:53.287113
+   saving output layer
+     done - elapsed time:  0:00:29.679636
+
+ Parcels_Cache
+   selecting private parcels
+     done - elapsed time:  0:00:10.341025
+   selecting forested private
+     done - elapsed time:  0:03:36.608318
+   saving output layer
+     done - elapsed time:  0:00:31.351190
+
+ Parcels_Carbon
+   selecting private parcels
+     done - elapsed time:  0:00:10.874920
+   selecting forested private
+     done - elapsed time:  0:19:47.170112
+   saving output layer
+     done - elapsed time:  0:00:43.561101
+
+ Parcels_Daggett
+   selecting private parcels
+     done - elapsed time:  0:00:12.470310
+   selecting forested private
+     done - elapsed time:  0:01:21.155929
+   saving output layer
+     done - elapsed time:  0:00:38.025527
+
+ Parcels_Davis
+   selecting private parcels
+     done - elapsed time:  0:00:13.747268
+   selecting forested private
+     done - elapsed time:  0:06:52.450062
+   saving output layer
+     done - elapsed time:  0:00:40.341452
+
+ Parcels_Duchesne
+   selecting private parcels
+     done - elapsed time:  0:00:13.676689
+   selecting forested private
+     done - elapsed time:  0:14:21.240469
+   saving output layer
+     done - elapsed time:  0:00:54.475905
+
+ Parcels_Emery
+   selecting private parcels
+     done - elapsed time:  0:00:15.208819
+   selecting forested private
+     done - elapsed time:  0:04:56.034792
+   saving output layer
+     done - elapsed time:  0:00:48.015103
+
+ Parcels_Garfield
+   selecting private parcels
+     done - elapsed time:  0:00:15.696717
+   selecting forested private
+     done - elapsed time:  0:22:43.506484
+   saving output layer
+     done - elapsed time:  0:00:53.856004
+
+ Parcels_Grand
+   selecting private parcels
+     done - elapsed time:  0:00:16.375884
+   selecting forested private
+     done - elapsed time:  0:01:31.621508
+   saving output layer
+     done - elapsed time:  0:00:51.459101
+
+ Parcels_Iron
+   selecting private parcels
+     done - elapsed time:  0:00:16.948210
+   selecting forested private
+     done - elapsed time:  1:15:02.467413
+   saving output layer
+     done - elapsed time:  0:01:13.277854
+
+ Parcels_Juab
+   selecting private parcels
+     done - elapsed time:  0:00:22.254161
+   selecting forested private
+     done - elapsed time:  0:39:11.134675
+   saving output layer
+     done - elapsed time:  0:00:58.396703
+
+ Parcels_Kane
+   selecting private parcels
+     done - elapsed time:  0:00:20.706146
+   selecting forested private
+     done - elapsed time:  0:19:31.155545
+   saving output layer
+     done - elapsed time:  0:01:05.375509
+
+ Parcels_Millard
+   selecting private parcels
+     done - elapsed time:  0:00:18.319539
+   selecting forested private
+     done - elapsed time:  0:05:19.767095
+   saving output layer
+     done - elapsed time:  0:01:04.212175
+
+ Parcels_Morgan
+   selecting private parcels
+     done - elapsed time:  0:00:22.523227
+   selecting forested private
+     done - elapsed time:  0:06:38.460005
+   saving output layer
+     done - elapsed time:  0:01:05.841509
+
+ Parcels_Piute
+   selecting private parcels
+     done - elapsed time:  0:00:20.864723
+   selecting forested private
+     done - elapsed time:  0:02:35.717935
+   saving output layer
+     done - elapsed time:  0:01:09.452244
+
+ Parcels_Rich
+   selecting private parcels
+     done - elapsed time:  0:00:22.771211
+   selecting forested private
+     done - elapsed time:  0:05:00.641520
+   saving output layer
+     done - elapsed time:  0:01:07.150251
+
+ Parcels_SaltLake
+   selecting private parcels
+     done - elapsed time:  0:00:25.341582
+   selecting forested private
+     done - elapsed time:  0:38:22.063007
+   saving output layer
+     done - elapsed time:  0:01:10.667328
+
+ Parcels_SanJuan
+   selecting private parcels
+     done - elapsed time:  0:00:21.557324
+   selecting forested private
+     done - elapsed time:  0:14:01.449356
+   saving output layer
+     done - elapsed time:  0:01:09.584932
+
+ Parcels_Sevier
+   selecting private parcels
+     done - elapsed time:  0:00:22.056866
+   selecting forested private
+     done - elapsed time:  0:02:10.502980
+   saving output layer
+     done - elapsed time:  0:01:09.765982
+
+ Parcels_Summit
+   selecting private parcels
+     done - elapsed time:  0:00:23.485154
+   selecting forested private
+     done - elapsed time:  1:26:10.355703
+   saving output layer
+     done - elapsed time:  0:01:25.825022
+
+ Parcels_Tooele
+   selecting private parcels
+     done - elapsed time:  0:00:23.818742
+   selecting forested private
+     done - elapsed time:  0:04:52.604869
+   saving output layer
+     done - elapsed time:  0:01:13.417528
+
+ Parcels_Uintah
+   selecting private parcels
+     done - elapsed time:  0:00:24.537142
+   selecting forested private
+     done - elapsed time:  0:03:46.507963
+   saving output layer
+     done - elapsed time:  0:01:17.379671
+
+ Parcels_Utah
+   selecting private parcels
+     done - elapsed time:  0:00:26.666119
+   selecting forested private
+     done - elapsed time:  0:44:51.678223
+   saving output layer
+     done - elapsed time:  0:01:21.683652
+
+ Parcels_Wasatch
+   selecting private parcels
+     done - elapsed time:  0:00:25.667722
+   selecting forested private
+     done - elapsed time:  0:38:38.808055
+   saving output layer
+     done - elapsed time:  0:01:27.111850
+
+ Parcels_Washington
+   selecting private parcels
+     done - elapsed time:  0:00:26.589567
+   selecting forested private
+     done - elapsed time:  0:27:29.415229
+   saving output layer
+     done - elapsed time:  0:01:27.128527
+
+ Parcels_Wayne
+   selecting private parcels
+     done - elapsed time:  0:00:26.720158
+   selecting forested private
+     done - elapsed time:  0:04:38.206244
+   saving output layer
+     done - elapsed time:  0:01:24.442277
+
+ Parcels_Weber
+   selecting private parcels
+     done - elapsed time:  0:00:27.830973
+   selecting forested private
+     done - elapsed time:  0:14:56.950247
+   saving output layer
+     done - elapsed time:  0:01:28.449589
+
+ Parcels_Sanpete
+   selecting private parcels
+     done - elapsed time:  0:00:28.997306
+   selecting forested private
+     done - elapsed time:  0:17:41.191122
+   saving output layer
+     done - elapsed time:  0:01:33.705542
+done - elapsed time:  9:37:36.963486
