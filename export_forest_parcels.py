@@ -9,7 +9,7 @@ This script runs through all feature layers in a geodatabase
 Feature layers are parcel boundary layers for each of the 29 counties in Utah
 There is also a polygon layer, created from a 30m raster, showing forested areas
 Forest cover data comes from the NLCD 2016 dataset
-(National Land Cover Dataset)
+- National Land Cover Dataset: https://www.mrlc.gov/national-land-cover-database-nlcd-2016
 For each county parcel layer, select the parcels that are privately owned
 from those selected parcels, select the parcels that intersect any forested area
 export that selection as a new layer of privately owned forested parcels for each county
