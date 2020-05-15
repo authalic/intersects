@@ -46,7 +46,7 @@ for fc in fcs:
             "NEW_SELECTION",
             "LOWER(OWN_TYPE) = 'private'"
             )
-        secs = time.time() - starttime
+        secs = round(time.time() - starttime, 1)
         print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
         # select the private parcels that intersect the forested areas
@@ -58,7 +58,7 @@ for fc in fcs:
             selection_type="SUBSET_SELECTION",
             select_features=forest
             )
-        secs = time.time() - starttime
+        secs = round(time.time() - starttime, 1)
         print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
         # save the remaining features as a new layer
@@ -66,8 +66,9 @@ for fc in fcs:
         starttime = time.time()  # start the stopwatch
         outlayername = fc + '_privateforest'
         arcpy.CopyFeatures_management(private_forested, outlayername)
-        secs = time.time() - starttime
+        secs = round(time.time() - starttime, 1)
         print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
 t2 = time.time() # stop the total runtime timer
-print("done - elapsed time: ", str(datetime.timedelta(seconds=t2 - t1)))
+secs = round(t2 - t1, 1)
+print("done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
