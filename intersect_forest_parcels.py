@@ -59,17 +59,8 @@ for fc in fcs:
         print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
 
 
-        # select the private parcels
-        print("   adding 'Forest_Acres' field")
-        starttime = time.time()  # start the stopwatch
-
-        arcpy.AddField_management(fc + "_intersect", 'Forest_Acres', 'DOUBLE')
-
-        secs = round(time.time() - starttime, 1)
-        print("     done - elapsed time: ", str(datetime.timedelta(seconds=secs)))
-
-
         # calculate acreage
+        # use the existing "Forest_Acres" field from the previous step
         print("   calculating geometry: area in acres")
         starttime = time.time()  # start the stopwatch
 
